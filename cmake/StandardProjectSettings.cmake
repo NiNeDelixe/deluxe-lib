@@ -32,4 +32,4 @@ endif()
 
 # run vcvarsall when msvc is used
 include("${CMAKE_CURRENT_LIST_DIR}/VCEnvironment.cmake")
-myproject_run_vcvarsall()
+deluxe_lib_run_vcvarsall()

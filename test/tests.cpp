@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 
-#include <myproject/sample_library.hpp>
+#include <deluxe_lib/sample_library.hpp>
 
 
 TEST_CASE("Factorials are computed", "[factorial]")
