@@ -80,4 +80,28 @@ function(deluxe_lib_setup_dependencies)
       "main")
   endif()
 
+  if(NOT TARGET enet)
+    cpmaddpackage(
+      NAME
+      enet
+      VERSION
+      2.7.0
+      GITHUB_REPOSITORY
+      "zpl-c/enet"
+      SYSTEM
+      YES)
+  endif()
+
+  # if(NOT TARGET ccache)
+  #   cpmaddpackage(
+  #     NAME
+  #     ccache
+  #     VERSION
+  #     4.13.6
+  #     GITHUB_REPOSITORY
+  #     "ccache/ccache"
+  #     SYSTEM
+  #     YES)
+  # endif()
+
 endfunction()

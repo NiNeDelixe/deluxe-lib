@@ -46,7 +46,7 @@ target_link_libraries(
   tests
   PRIVATE deluxe_lib::deluxe_lib_warnings
           deluxe_lib::deluxe_lib_options
-          deluxe_lib::sample_library
+          deluxe_lib::deluxe_lib
           Catch2::Catch2WithMain)
 
 deluxe_lib_configure_linker(tests)
@@ -80,7 +80,7 @@ target_link_libraries(
   constexpr_tests
   PRIVATE deluxe_lib::deluxe_lib_warnings
           deluxe_lib::deluxe_lib_options
-          deluxe_lib::sample_library
+          deluxe_lib::deluxe_lib
           Catch2::Catch2WithMain)
 
 deluxe_lib_configure_linker(constexpr_tests)
@@ -105,7 +105,7 @@ target_link_libraries(
   relaxed_constexpr_tests
   PRIVATE deluxe_lib::deluxe_lib_warnings
           deluxe_lib::deluxe_lib_options
-          deluxe_lib::sample_library
+          deluxe_lib::deluxe_lib
           Catch2::Catch2WithMain)
 target_compile_definitions(relaxed_constexpr_tests PRIVATE -DCATCH_CONFIG_RUNTIME_STATIC_REQUIRE)
 
