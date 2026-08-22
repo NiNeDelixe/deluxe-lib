@@ -1,7 +1,7 @@
 include(GenerateExportHeader)
 
 
-add_library(deluxe_lib deluxe_lib.cpp multiplayer/MultiplayerHandler.cpp)
+add_library(deluxe_lib deluxe_lib.cpp network/multiplayer/MultiplayerHandler.cpp)
 
 
 

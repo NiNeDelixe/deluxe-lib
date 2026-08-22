@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 
 # Disable modules support, this is broken with clang-tidy at the moment
-cmake_policy(SET CMP0155 OLD) 
+#cmake_policy(SET CMP0155 OLD) 
 
 # This template attempts to be "fetch_content"-able
 # so that it works well with tools like CPM or other
@@ -9,7 +9,7 @@ cmake_policy(SET CMP0155 OLD)
 
 # Only set the cxx_standard if it is not set by someone else
 if (NOT DEFINED CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 23)
+  set(CMAKE_CXX_STANDARD 20)
 endif()
 
 # strongly encouraged to enable this globally to avoid conflicts between
@@ -61,8 +61,8 @@ target_compile_features(deluxe_lib_options INTERFACE cxx_std_${CMAKE_CXX_STANDAR
 add_library(deluxe_lib::deluxe_lib_options ALIAS deluxe_lib_options)
 add_library(deluxe_lib::deluxe_lib_warnings ALIAS deluxe_lib_warnings)
 
-#add_library(deluxe_lib::deluxe_lib_options INTERFACE IMPORTED)
-#add_library(deluxe_lib::deluxe_lib_warnings INTERFACE IMPORTED)
+# add_library(deluxe_lib::deluxe_lib_options INTERFACE IMPORTED)
+# add_library(deluxe_lib::deluxe_lib_warnings INTERFACE IMPORTED)
 
 # configure files based on CMake configuration options
 add_subdirectory(configured_files)

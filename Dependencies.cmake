@@ -8,31 +8,31 @@ function(deluxe_lib_setup_dependencies)
   # For each dependency, see if it's
   # already been provided to us by a parent project
 
-  if(NOT TARGET fmtlib::fmtlib)
-    cpmaddpackage(
-      NAME
-      fmt
-      GITHUB_REPOSITORY
-      "fmtlib/fmt"
-      GIT_TAG
-      "12.1.0"
-      SYSTEM
-      YES)
-  endif()
+  # if(NOT TARGET fmtlib::fmtlib)
+  #   cpmaddpackage(
+  #     NAME
+  #     fmt
+  #     GITHUB_REPOSITORY
+  #     "fmtlib/fmt"
+  #     GIT_TAG
+  #     "12.1.0"
+  #     SYSTEM
+  #     YES)
+  # endif()
 
-  if(NOT TARGET spdlog::spdlog)
-    cpmaddpackage(
-      NAME
-      spdlog
-      VERSION
-      1.17.0
-      GITHUB_REPOSITORY
-      "gabime/spdlog"
-      SYSTEM
-      YES
-      OPTIONS
-      "SPDLOG_FMT_EXTERNAL ON")
-  endif()
+  # if(NOT TARGET spdlog::spdlog)
+  #   cpmaddpackage(
+  #     NAME
+  #     spdlog
+  #     VERSION
+  #     1.17.0
+  #     GITHUB_REPOSITORY
+  #     "gabime/spdlog"
+  #     SYSTEM
+  #     YES
+  #     OPTIONS
+  #     "SPDLOG_FMT_EXTERNAL ON")
+  # endif()
 
   if(NOT TARGET Catch2::Catch2WithMain)
     cpmaddpackage(
@@ -46,39 +46,39 @@ function(deluxe_lib_setup_dependencies)
       YES)
   endif()
 
-  if(NOT TARGET CLI11::CLI11)
-    cpmaddpackage(
-      NAME
-      CLI11
-      VERSION
-      2.6.1
-      GITHUB_REPOSITORY
-      "CLIUtils/CLI11"
-      SYSTEM
-      YES)
-  endif()
+  # if(NOT TARGET CLI11::CLI11)
+  #   cpmaddpackage(
+  #     NAME
+  #     CLI11
+  #     VERSION
+  #     2.6.1
+  #     GITHUB_REPOSITORY
+  #     "CLIUtils/CLI11"
+  #     SYSTEM
+  #     YES)
+  # endif()
 
-  if(NOT TARGET ftxui::screen)
-    cpmaddpackage(
-      NAME
-      FTXUI
-      VERSION
-      6.1.9
-      GITHUB_REPOSITORY
-      "ArthurSonzogni/FTXUI"
-      SYSTEM
-      YES)
-  endif()
+  # if(NOT TARGET ftxui::screen)
+  #   cpmaddpackage(
+  #     NAME
+  #     FTXUI
+  #     VERSION
+  #     6.1.9
+  #     GITHUB_REPOSITORY
+  #     "ArthurSonzogni/FTXUI"
+  #     SYSTEM
+  #     YES)
+  # endif()
 
-  if(NOT TARGET tools::tools)
-    cpmaddpackage(
-      NAME
-      tools
-      GITHUB_REPOSITORY
-      "lefticus/tools"
-      GIT_TAG
-      "main")
-  endif()
+  # if(NOT TARGET tools::tools)
+  #   cpmaddpackage(
+  #     NAME
+  #     tools
+  #     GITHUB_REPOSITORY
+  #     "lefticus/tools"
+  #     GIT_TAG
+  #     "main")
+  # endif()
 
   if(NOT TARGET enet)
     cpmaddpackage(
@@ -91,6 +91,8 @@ function(deluxe_lib_setup_dependencies)
       SYSTEM
       YES)
   endif()
+
+  
 
   # if(NOT TARGET ccache)
   #   cpmaddpackage(

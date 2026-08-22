@@ -15,7 +15,7 @@
 
 class MultiplayerHandler
 {
-    DECLARE_CLASS(MultiplayerHandler)
+    DL_DECLARE_CLASS(MultiplayerHandler)
 
 public:
     void init(std::ostream& output_stream = std::cout);

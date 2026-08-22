@@ -4,6 +4,7 @@
 #include <deluxe_lib/deluxe_lib_export.hpp>
 
 #include <stdint.h>
+#include <functional>
 
 #define NOMINMAX
 
@@ -22,25 +23,30 @@
 #define TIME_S(time) (TIME_MS(time) * 100)
 #define TIME_M(time) (TIME_S(time)  * 60)
 
-#define DELETE_COPY(Class) \
+template<class T>
+using callback = std::function<T>;
+
+using void_callback = callback<void(void)>;
+
+#define DL_DELETE_COPY(Class) \
 Class(const Class&) = delete; \
 void operator=(const Class&) = delete; \
 Class(Class&&) = delete; \
 Class& operator=(Class&&) = delete;
 
-#define SIMPLE_DECLARE_CLASS(Class) \
+#define DL_SIMPLE_DECLARE_CLASS(Class) \
 public: \
-    DELETE_COPY(Class) \
-    static Class& getInstance() { static Class instance; return instance; } \
+    DL_DELETE_COPY(Class) \
+    static Class* getPtr() { static Class instance; return &instance; } \
+    static Class& getInstance() { return *getPtr(); } \
 private: 
 
-#define DECLARE_CLASS(Class) \
-SIMPLE_DECLARE_CLASS(Class) \
+#define DL_DECLARE_CLASS(Class) \
+    DL_SIMPLE_DECLARE_CLASS(Class) \
     Class() = default; \
 public: \
-    ~Class() = default; \
+    virtual ~Class() = default; \
 private:
-
 
 
 #endif // CORE_CORE_HPP_

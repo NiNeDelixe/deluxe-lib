@@ -1,4 +1,4 @@
-#include "deluxe_lib/multiplayer/MultiplayerHandler.hpp"
+#include "deluxe_lib/network/multiplayer/MultiplayerHandler.hpp"
 
 void MultiplayerHandler::init(std::ostream& output_stream) 
 {
