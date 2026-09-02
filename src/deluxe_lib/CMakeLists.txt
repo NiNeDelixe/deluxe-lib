@@ -1,8 +1,31 @@
 include(GenerateExportHeader)
 
+set(MODULES_COMPILE_DEFINITIONS)
 
-add_library(deluxe_lib deluxe_lib.cpp network/multiplayer/MultiplayerHandler.cpp)
+if(BUILD_NETWORK_MODULE)
 
+  set(NETWORK_SOURCES
+    multiplayer/MultiplayerHandler.cpp
+  )
+  list(TRANSFORM NETWORK_SOURCES PREPEND "network/")
+  list(TRANSFORM MODULES_COMPILE_DEFINITIONS APPEND module_network)
+  
+endif(BUILD_NETWORK_MODULE)
+
+
+
+
+set(MAIN_SOURCE
+  deluxe_lib.cpp
+)
+
+
+set(ALL_SOURCES
+  ${NETWORK_SOURCES}
+  ${MAIN_SOURCE}
+)
+
+add_library(deluxe_lib ${ALL_SOURCES})
 
 
 add_library(deluxe_lib::deluxe_lib ALIAS deluxe_lib)
@@ -37,3 +60,5 @@ generate_export_header(deluxe_lib EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(deluxe_lib PUBLIC deluxe_lib_STATIC_DEFINE)
 endif()
+
+target_compile_definitions(deluxe_lib PUBLIC ${MODULES_COMPILE_DEFINITIONS})

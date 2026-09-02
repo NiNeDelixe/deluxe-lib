@@ -41,12 +41,16 @@ public: \
     static Class& getInstance() { return *getPtr(); } \
 private: 
 
-#define DL_DECLARE_CLASS(Class) \
-    DL_SIMPLE_DECLARE_CLASS(Class) \
+#define DL_DISABLE_CONSTRUCTOR(Class) \
+private: \
     Class() = default; \
 public: \
     virtual ~Class() = default; \
 private:
+
+#define DL_DECLARE_CLASS(Class) \
+    DL_SIMPLE_DECLARE_CLASS(Class) \
+    DL_DISABLE_CONSTRUCTOR(Class)
 
 
 #endif // CORE_CORE_HPP_

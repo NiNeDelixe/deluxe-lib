@@ -1,6 +1,10 @@
 #include "deluxe_lib/network/multiplayer/MultiplayerHandler.hpp"
 
-void MultiplayerHandler::init(std::ostream& output_stream) 
+MultiplayerHandler::MultiplayerHandler(std::ostream &output_stream) 
+    : output_stream(output_stream)
+{}
+
+void MultiplayerHandler::init() 
 {
     if (enet_initialize () != 0) 
     {
@@ -8,17 +12,17 @@ void MultiplayerHandler::init(std::ostream& output_stream)
         return;
     }
 
-    startServer(output_stream);
-    startClient(output_stream);
+    startServer();
+    startClient();
 }
 
-void MultiplayerHandler::destroy() 
+void MultiplayerHandler::destroy()
 {
     enet_host_destroy(host.get());
     enet_deinitialize();
 }
 
-void MultiplayerHandler::startServer(std::ostream& output_stream) 
+void MultiplayerHandler::startServer() 
 {
     if (!m_is_server)
     {
@@ -78,7 +82,7 @@ void MultiplayerHandler::startServer(std::ostream& output_stream)
     
 }
 
-void MultiplayerHandler::startClient(std::ostream& output_stream) 
+void MultiplayerHandler::startClient() 
 {
     if (m_is_server)
     {

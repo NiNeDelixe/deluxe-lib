@@ -15,18 +15,22 @@
 
 class MultiplayerHandler
 {
-    DL_DECLARE_CLASS(MultiplayerHandler)
+    DL_SIMPLE_DECLARE_CLASS(MultiplayerHandler)
 
 public:
-    void init(std::ostream& output_stream = std::cout);
+    MultiplayerHandler(std::ostream& output_stream = std::cout);
+
+public:
+    void init();
     void destroy();
 
-    void startServer(std::ostream& output_stream = std::cout);
-    void startClient(std::ostream& output_stream = std::cout);
+    void startServer();
+    void startClient();
 
 private:
     bool m_is_server = true;
     std::shared_ptr<ENetHost> host;
+    std::ostream& output_stream;
 };
 
 #endif // MULTIPLAYER_MULTIPLAYER_HANDLER_HPP_
