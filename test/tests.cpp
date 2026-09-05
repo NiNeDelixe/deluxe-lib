@@ -3,12 +3,39 @@
 
 // #include <deluxe_lib/sample_library.hpp>
 
+#include "deluxe_lib/math/vectorization/DataStruct.hpp"
+#include "deluxe_lib/math/vectorization/DataVector.hpp"
 
-TEST_CASE("Factorials are computed", "[factorial]")
+struct test : public DataStruct<test>
 {
-  // REQUIRE(factorial(0) == 1);
-  // REQUIRE(factorial(1) == 1);
-  // REQUIRE(factorial(2) == 2);
-  // REQUIRE(factorial(3) == 6);
-  // REQUIRE(factorial(10) == 3628800);
+    DataVector<int, 0> x;
+    DataVector<int, 1> y;
+    DataVector<char, 2> c;
+};
+
+
+TEST_CASE("DataVector", "[vectorization]")
+{
+    test one = test();
+    one.x = 0;
+    one.y = 1;
+    one.c = 'a';
+
+    REQUIRE(one.x.getRefs().size() == 1);
+
+    test two = test();
+    two.x = 1;
+    two.y = 2;
+    two.c = 'b';
+
+    REQUIRE(one.y.getRefs().size() == 2);
+
+    test three = test();
+    three.x = 3;
+    three.y = 4;
+    three.c = 'c';
+
+    REQUIRE(one.c.getRefs().size() == 3);
+
+
 }

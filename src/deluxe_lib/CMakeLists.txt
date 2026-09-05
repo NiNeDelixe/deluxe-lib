@@ -13,6 +13,10 @@ if(BUILD_NETWORK_MODULE)
 endif(BUILD_NETWORK_MODULE)
 
 
+set(MATH_SOURCES
+  vectorization/DataVector.cpp
+)
+list(TRANSFORM MATH_SOURCES PREPEND "math/")
 
 
 set(MAIN_SOURCE
@@ -23,6 +27,7 @@ set(MAIN_SOURCE
 set(ALL_SOURCES
   ${NETWORK_SOURCES}
   ${MAIN_SOURCE}
+  ${MATH_SOURCES}
 )
 
 add_library(deluxe_lib ${ALL_SOURCES})

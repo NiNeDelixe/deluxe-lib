@@ -53,4 +53,10 @@ private:
     DL_DISABLE_CONSTRUCTOR(Class)
 
 
+#define GETTER(type, name, field) const type& get##name(void) { return field; } 
+
+#define SETTER(type, name, field) void set##name(const type& value) { field = value; } 
+
+#define GETTER_SETTER(type, name, field) GETTER(type, name, field) SETTER(type, name, field)
+
 #endif // CORE_CORE_HPP_
