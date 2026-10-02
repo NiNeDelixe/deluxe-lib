@@ -27,7 +27,7 @@ public:
     }
 
 public:
-    GETTER_SETTER(refs_type, Refs, m_refs)
+    GETTER_SETTER(refs_type, m_refs, Refs)
 
 private:
     static refs_type m_refs;

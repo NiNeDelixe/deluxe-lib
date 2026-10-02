@@ -12,7 +12,7 @@
 #define ENET_IMPLEMENTATION
 #include <enet.h>
 
-#include "deluxe_lib/network/multiplayer/IDataPacket.hpp"
+#include "deluxe_lib/network/multiplayer/INetworkPacketPayload.hpp"
 
 
 class MultiplayerHandler
@@ -29,8 +29,8 @@ public:
     void startServer();
     void startClient();
 
-    template<class DATAPACKETCLASS>
-    void sendPacket();
+    template<class DATAPACKETCLASS, class... ARGS> 
+    void sendPacket(ARGS&&... args);
 
 private:
     bool m_is_server = true;
@@ -39,10 +39,10 @@ private:
 };
 
 
-template<class DATAPACKETCLASS> 
-inline void MultiplayerHandler::sendPacket() 
+template<class DATAPACKETCLASS, class... ARGS> 
+inline void MultiplayerHandler::sendPacket(ARGS&&... args) 
 {
-    std::shared_ptr<IDataPacket> packet = std::make_shared<DATAPACKETCLASS>();
+    std::shared_ptr<INetworkPacketPayload> packet = std::make_shared<DATAPACKETCLASS, ARGS...>(std::forward(args...));
 
     packet;
 }

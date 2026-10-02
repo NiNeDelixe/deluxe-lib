@@ -1,10 +1,13 @@
-#ifndef CORE_CORE_HPP_
-#define CORE_CORE_HPP_
+#ifndef CORE_CORE_HPP
+#define CORE_CORE_HPP
 
 #include <deluxe_lib/deluxe_lib_export.hpp>
 
 #include <stdint.h>
+#include <memory>
 #include <functional>
+
+#include "deluxe_lib/utility/meta/MetaMacros.hpp"
 
 #define NOMINMAX
 
@@ -28,35 +31,32 @@ using callback = std::function<T>;
 
 using void_callback = callback<void(void)>;
 
-#define DL_DELETE_COPY(Class) \
-Class(const Class&) = delete; \
-void operator=(const Class&) = delete; \
-Class(Class&&) = delete; \
-Class& operator=(Class&&) = delete;
+using dl_number_t = double;
+using dl_integer_t = int32_t;
 
-#define DL_SIMPLE_DECLARE_CLASS(Class) \
-public: \
-    DL_DELETE_COPY(Class) \
-    static Class* getPtr() { static Class instance; return &instance; } \
-    static Class& getInstance() { return *getPtr(); } \
-private: 
+namespace delegates
+{
+	using runnable = std::function<void()>;
+	template<class T> using supplier = std::function<T()>;
+	template<class T> using consumer = std::function<void(T)>;
 
-#define DL_DISABLE_CONSTRUCTOR(Class) \
-private: \
-    Class() = default; \
-public: \
-    virtual ~Class() = default; \
-private:
+	using key_callback = std::function<bool()>;
 
-#define DL_DECLARE_CLASS(Class) \
-    DL_SIMPLE_DECLARE_CLASS(Class) \
-    DL_DISABLE_CONSTRUCTOR(Class)
+	// data sources
+	using u32stringsupplier = std::function<std::u32string()>;
+	using doublesupplier = std::function<double()>;
+	using boolsupplier = std::function<bool()>;
+	//using vec2supplier = std::function<glm::vec2()>;
+	using key_handler = std::function<bool(int)>;
 
+	using stringconsumer = std::function<void(const std::string&)>;
+	using u32stringconsumer = std::function<void(const std::u32string&)>;
+	using doubleconsumer = std::function<void(double)>;
+	using boolconsumer = std::function<void(bool)>;
+	using int_array_consumer = std::function<void(const int[], size_t)>;
+	using u32stringchecker = std::function<bool(const std::u32string&)>;
 
-#define GETTER(type, name, field) const type& get##name(void) { return field; } 
+	using observer_handler = std::shared_ptr<int>;
+}
 
-#define SETTER(type, name, field) void set##name(const type& value) { field = value; } 
-
-#define GETTER_SETTER(type, name, field) GETTER(type, name, field) SETTER(type, name, field)
-
-#endif // CORE_CORE_HPP_
+#endif // CORE_CORE_HPP
