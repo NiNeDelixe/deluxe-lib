@@ -92,6 +92,15 @@ function(deluxe_lib_setup_dependencies)
       YES)
   endif()
 
+  if(NOT TARGET nlohmann_json)
+    cpmaddpackage(
+      NAME nlohmann_json
+      VERSION 3.12.0
+      GITHUB_REPOSITORY "nlohmann/json"
+      SYSTEM YES
+      #URL_HASH SHA256=42f6e95cad6ec532fd372391373363b62a14af6d771056dbfc86160e6dfff7aa
+    )
+  endif()
   
 
   # if(NOT TARGET ccache)

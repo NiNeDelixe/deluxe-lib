@@ -230,7 +230,8 @@ public:
 
     std::unique_ptr<OBJECT> create() const
     {
-        if (factory_) return factory_();
+        if (factory_) 
+            return factory_();
         if constexpr (std::is_default_constructible_v<OBJECT>)
             return std::make_unique<OBJECT>();
         else

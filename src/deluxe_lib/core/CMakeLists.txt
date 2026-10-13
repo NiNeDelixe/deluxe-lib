@@ -14,6 +14,7 @@ target_link_libraries(deluxe_lib.Core
   INTERFACE 
     deluxe_lib_options 
     deluxe_lib_warnings
+    nlohmann_json::nlohmann_json
 )
 
 target_include_directories(deluxe_lib.Core 
