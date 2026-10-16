@@ -17,7 +17,7 @@ private:
 private: \
     Class() = default; \
 public: \
-    virtual ~Class() = default; \
+    //virtual ~Class() = default; \
 private:
 
 #define DL_DECLARE_CLASS(Class) \
